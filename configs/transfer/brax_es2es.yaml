@@ -1,0 +1,56 @@
+train_config:
+  train_type: "ES"
+  ticket_dir: "experiments/blines/ant_sepcma/b_1_eval_2/extra"
+  env_name: "ant"
+  num_generations: 3000
+  eval_every_gen: 100
+  strategy_name: "DES" # "OpenES"
+  popsize: 256
+  normalize_obs: True
+  es_config:
+    mean_decay: 1e-05
+  model_config:
+    hidden_layers: 2
+    hidden_dims: 32
+  task_config:
+    max_steps: 500
+  es_params:
+    init_min: 0.0
+    init_max: 0.0
+  eval_config:
+    n_repeats: 8
+    test_n_repeats: 1
+    n_evaluations: 64
+  num_imp_iters: 20
+  fixed_seed: false
+
+log_config:
+  time_to_track: ["imp_iter", "num_gens"]
+  what_to_track: 
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "train_perf"
+    - "sparsity"
+    - "trainable_params"
+    - "pruned_params"
+    - "prunable_params"
+    - "prune_threshold"
+  what_to_print:
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "sparsity"
+  verbose: true
+  print_every_k_updates: 1
+  overwrite: 1
+  model_type: "jax"
+  use_wandb: true
+  wandb_config:
+    project: es-hopper
+    group: diff-es-ur5e
+    name: seed0
+
+device_config:
+  device_type: "gpu"
+  num_devices: 1

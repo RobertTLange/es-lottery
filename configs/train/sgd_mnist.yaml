@@ -1,0 +1,46 @@
+train_config:
+  env_name: "mnist"
+  model_config:
+    hidden_layers: 0
+    hidden_dims: 0
+  task_config:
+    batch_size: 1024
+  num_imp_iters: 20
+  imp_config:
+    baseline_name: "final-ticket"
+    prune_ratio: 0.8
+    modules_not_to_prune: []
+  network_to_prune: "final"
+  lrate: 3e-04
+  batch_size: 128
+  num_epochs: 2
+
+log_config:
+  time_to_track: ["imp_iter", "num_epochs"]
+  what_to_track: 
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "sparsity"
+    - "trainable_params"
+    - "pruned_params"
+    - "prunable_params"
+    - "prune_threshold"
+  what_to_print:
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "sparsity"
+  verbose: true
+  print_every_k_updates: 1
+  overwrite: 1
+  model_type: "jax"
+  use_wandb: true
+  wandb_config:
+    project: es-lottery-rebuttals
+    group: mnist-sgd
+    name: seed0
+
+device_config:
+  device_type: "gpu"
+  num_devices: 1

@@ -1,0 +1,8 @@
+mle-toolbox[full]
+evosax==0.1.4
+gymnax==0.0.6
+brax
+evojax
+torch
+torchvision
+tensorflow_probability

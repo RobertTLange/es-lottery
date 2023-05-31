@@ -1,0 +1,51 @@
+train_config:
+  train_type: "ES"
+  ticket_dir: "experiments/blines/fmnist_snes_128/b_1_eval_2/extra"
+  # 176588, 362028, 381632, 562958, 924197
+  env_name: "fmnist"
+  num_generations: 4000
+  eval_every_gen: 100
+  strategy_name: "PGPE"
+  popsize: 128
+  normalize_obs: False
+  es_config:
+    mean_decay: 1e-04
+  model_config:
+    hidden_layers: 0
+    hidden_dims: 0
+  task_config:
+    batch_size: 1024
+  es_params:
+    init_min: 0.0
+    init_max: 0.0
+  eval_config:
+    n_repeats: 1
+    test_n_repeats: 1
+    n_evaluations: 1
+  num_imp_iters: 20
+  fixed_seed: false
+
+log_config:
+  time_to_track: ["imp_iter", "num_gens"]
+  what_to_track: 
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "train_perf"
+  what_to_print:
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+  verbose: true
+  print_every_k_updates: 1
+  overwrite: 1
+  model_type: "jax"
+  use_wandb: true
+  wandb_config:
+    project: es-lth-crv
+    group: fmnist-transfer-pgpe
+    name: seed0
+
+device_config:
+  device_type: "gpu"
+  num_devices: 1

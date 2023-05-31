@@ -1,0 +1,43 @@
+train_config:
+  env_name: "ant"
+  model_config:
+    hidden_layers: 2
+    hidden_dims: 32
+  task_config:
+    max_steps: 500
+  num_imp_iters: 20
+  imp_config:
+    baseline_name: "final-ticket"
+    prune_ratio: 0.8
+    modules_not_to_prune: []
+  network_to_prune: "final"
+
+log_config:
+  time_to_track: ["imp_iter", "num_steps"]
+  what_to_track: 
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "sparsity"
+    - "trainable_params"
+    - "pruned_params"
+    - "prunable_params"
+    - "prune_threshold"
+  what_to_print:
+    - "final_perf"
+    - "best_perf"
+    - "test_perf"
+    - "sparsity"
+  verbose: true
+  print_every_k_updates: 1
+  overwrite: 1
+  model_type: "jax"
+  use_wandb: false
+  wandb_config:
+    project: es-lottery-rebuttal
+    group: ppo-random-bline
+    name: seed0
+
+device_config:
+  device_type: "gpu"
+  num_devices: 1

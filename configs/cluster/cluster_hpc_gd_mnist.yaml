@@ -1,0 +1,50 @@
+# Meta Arguments: What job? What train .py file? Base config? Where to store?
+meta_job_args:
+    project_name: "es_lottery"
+    experiment_type: "hyperparameter-search"
+    base_train_fname: "run_gd_mnist.py"
+    base_train_config: "configs/train/sgd_mnist.yaml"
+    experiment_dir: "experiments/sgd_mnist"
+
+# Parameters specific to the hyperparameter search
+param_search_args:
+    search_logging:
+        max_objective: True
+        aggregate_seeds: "mean"
+        problem_type: "best"
+        eval_metrics:
+            - "final_perf"
+    search_resources:
+        num_search_batches: 1
+        num_evals_per_batch: 10
+        num_seeds_per_eval: 5
+    search_config:
+        search_type: "Grid"
+        search_schedule: "sync"
+        search_params:
+          categorical:
+            env_name:
+                - "mnist"
+                # - "fmnist"
+                # - "kmnist"
+            imp_config/baseline_name:
+                - "final-ticket"
+                - "random-reinit"
+                # - "sig2noise"
+                # - "final-ticket_permute"
+                # - "final_permute-ticket_permute"
+
+# Parameters specific to an individual job
+single_job_args:
+    job_name: "es_lottery"
+    num_gpus: 1
+    num_logical_cores: 4
+    log_file: "log"
+    err_file: "err"
+    time_per_job: "01:20:00"
+    memory_per_cpu: 10000
+    env_name: "es_jax"
+    partition:
+        - "ex_scioi_gpu"
+        - "ex_scioi_a100nv"
+    gpu_type: null
