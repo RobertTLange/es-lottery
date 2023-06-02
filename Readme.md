@@ -1,7 +1,7 @@
 # Lottery Tickets in Evolutionary Optimization: On Sparse Backpropagation-Free Trainability
 ## Authors: R. Lange & H. Sprekeler (ICML, 2023)
 
-This repository provides the source code for our ICML paper on sparse trainability of Evolution Strategies. At it's core we compare iterative magnitude pruning in Gradient Descent-based optimization with Gradient-Free Evolutionary Optimization methods. 
+This repository provides the source code for our ICML paper on sparse trainability of Evolution Strategies. At it's core we compare iterative magnitude pruning in Gradient Descent-based optimization with Gradient-Free Evolutionary Optimization methods. [[Paper Link](https://arxiv.org/abs/2306.00045)].
 
 > Lange, R. T., Sprekeler, H. (2023), *Lottery Tickets in Evolutionary Optimization: On Sparse Backpropagation-Free Trainability.* International Conference on Machine Learning.
 
